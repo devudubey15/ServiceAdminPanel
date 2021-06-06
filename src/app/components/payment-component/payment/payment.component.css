@@ -1,0 +1,33 @@
+thead {
+    background-color: rgb(13, 35, 41);
+    color: mintcream;
+}
+
+.container-sec, .container-third, .container-fourth {
+    background-color: silver;
+    border-radius: 5px;
+}
+
+.pointer {
+    color: rgb(18, 69, 136);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+button {
+    display: grid;
+    place-items: center;
+}
+
+.cancleBtn {
+    color: cornsilk;
+    background-color: rgb(192, 61, 61);
+    ;
+}

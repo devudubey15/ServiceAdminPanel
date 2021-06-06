@@ -1,0 +1,11 @@
+.container-fluid {
+    background-color: rgb(33, 43, 56);
+}
+.container{
+    background-color: silver;
+    color: black;
+    border: darkgray;
+    border-style: outset;
+    border-width: 7px;
+    border-radius: 7px;
+}

@@ -1,0 +1,66 @@
+.container-sec, .container-third, .container-four {
+    background-color: silver;
+    border-radius: 5px;
+}
+
+thead {
+    background-color: rgb(13, 35, 41);
+    color: mintcream;
+}
+
+.pointer {
+    color: rgb(18, 69, 136);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ID {
+    font-weight: bold;
+}
+
+.card {
+    background-color: silver;
+    border: rgb(57, 59, 61);
+    border-width: 3px;
+    width: 950px;
+}
+
+.Button-exit {
+    font-weight: bold;
+    color: cornsilk;
+    background-color: rgb(192, 61, 61);
+    border-radius: 5px;
+}
+
+.dot-full {
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: black;
+    border-width: 5px;
+    background-color: rgb(36, 107, 36);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-half {
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: black;
+    border-width: 2px;
+    background-color:  goldenrod;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-leave {
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: black;
+    border-width: 2px;
+    background-color: rgb(131, 20, 20);
+    border-radius: 50%;
+    display: inline-block;
+}

@@ -1,0 +1,12 @@
+.container-outer {
+    background-color: silver;
+    border-radius: 5px;
+}
+
+.card-header {
+    border: cornsilk;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #424646;
+    color: cornsilk;
+}

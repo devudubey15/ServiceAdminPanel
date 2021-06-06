@@ -1,0 +1,43 @@
+.container-sec {
+    background-color: silver;
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+input {
+    /* margin-left: 40px; */
+    background-color: snow;
+    /* border-style: none; */
+    border-radius: 5px;
+    outline: none;
+    /* width: 100%; */
+    padding: 7px;
+    opacity: 0.6;
+}
+
+span {
+    margin-bottom: 10px;
+}
+
+.generatebtn {
+    text-align: center;
+    color: #99CCCC;
+}
+
+.img {
+    height: 150px;
+}
+
+.total {
+    background-color: rgb(9, 63, 70);
+    color: ghostwhite;
+    padding: 10px;
+}
+
+.container-third {
+    border-top: 40px solid rgb(9, 63, 70);
+    
+   
+}

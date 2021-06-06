@@ -1,0 +1,36 @@
+.sidebar-container {
+    background-color: rgb(5, 16, 117);
+}
+
+.nav-item {
+    /* border:1px solid #fff; */
+    border-radius: 7px;
+    background-color: grey;
+    border-style: double;
+    margin-bottom: 1em;
+}
+
+.nav-link:hover {
+    color: #FFD700;
+}
+
+.nav-link {
+    color: #fafafa;
+   
+}
+
+.nav {
+    margin-top: 50px;
+}
+
+.checked-item {
+    border: 1px solid #fff;
+    color: rgba(0, 255, 255, 0.596);
+    border-radius: 7px;
+    background-color:#202020;
+}
+
+.col {
+    background-color: rgb(33, 43, 56);
+    margin-left: 1px;
+}

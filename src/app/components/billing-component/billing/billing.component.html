@@ -1,0 +1,488 @@
+<div *ngIf='!billgenerate'>
+    <div class="container">
+        <div class="container-sec py-2">
+            <h2 class="text-center mt-2 mb-2 ">Billing</h2>
+            <hr class="divider lite margin">
+            <div class="px-5">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div>
+                            <h4>From</h4>
+                        </div>
+                        <div class="p-3">
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Name </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.name}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>E-mail </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.email}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Address </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.address}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Phone </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.phone}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Business No</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.businessNumber}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 ">
+                        <div>
+                            <h4>Bill To</h4>
+                        </div>
+                        <div class="p-3">
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Name</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.name}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>E-mail</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.email}}</span>
+                                </div>
+                            </div>
+
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Address</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.address}}</span>
+                                </div>
+                            </div>
+
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Phone</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.phone}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <hr class="divider lite margin">
+            <div class="px-5">
+                <h4>Vehicle Details</h4>
+                <ul class="p-3 ">
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Vehicle Number</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.vehicle_number}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Chechis Number</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.chechis_number}}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Vehicle Model</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.vehicle_model}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <hr class="divider lite margin">
+
+
+            <div class="px-5">
+                <div>
+                    <h4 class="head ">Invoice</h4>
+                </div>
+                <div class="p-3">
+                    <div class="mb-3">
+                        <label class="col-sm-2" for="name">Invoice Number</label>
+                        <input type="text" class="name col-md-5" placeholder="Business Name"
+                            [(ngModel)]='invoice_number'>
+                    </div>
+
+                    <div class="contentoffirstcol">
+                        <label class="col-md-2" for="name">Date</label>
+                        <input type="date" class="name col-md-5" [(ngModel)]='date'>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr class="divider bg-dark">
+
+            <div class="row ml-5">
+                <div class="col-6">
+                    <h5>PART NAME</h5>
+                </div>
+                <div class="col-2">
+                    <h5>RATE</h5>
+                </div>
+                <div class="col-2">
+                    <h5>QUANTITY</h5>
+                </div>
+                <div class="col-2">
+                    <h5>ACTION</h5>
+                </div>
+            </div>
+
+            <hr class="divider bg-dark">
+            <div class="row ml-5 mb-3" *ngFor='let item of partData; let i=index'>
+                <div class="col-6 ">
+                    <input type="text" class="name col-md-10" [(ngModel)]='item.partName' placeholder="Part Name">
+                </div>
+                <div class="col-2">
+                    <input type="number" class="name col-md-10 " [(ngModel)]='item.price' placeholder="RATE">
+                </div>
+                <div class="col-2">
+                    <input type="number" class="name col-md-10" [(ngModel)]='item.quantity' placeholder="QUANTITY">
+                </div>
+                <div class="col-2">
+
+                    <button type="button" class="btn btn-danger " (click)='deletedetails(i)'>Delete</button>
+                </div>
+            </div>
+
+            <div class="row ml-5">
+                <div class="col-6 ">
+                    <input type="text" class="name col-md-10" [(ngModel)]='partName' placeholder="Part Name">
+                </div>
+                <div class="col-2">
+                    <input type="number" class="name col-md-10 " [(ngModel)]='price' placeholder="RATE">
+                </div>
+                <div class="col-2">
+                    <input type="number" class="name col-md-10" [(ngModel)]='quantity' placeholder="QUANTITY">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-dark ml-4" (click)='addDetails()'>+</button>
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+
+        <div class="generatebtn">
+            <button type="button" class="btn btn-lg btn-primary mt-5" (click)='generateBill()'>GENERATE BILL</button>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf='billgenerate'>
+    <div class="container">
+        <div class="container-third bg-light p-5">
+            
+            <div class="row ">
+                <div class="col-md-6 mt-5 ">
+                    <div class="float-left mb-5">
+                        <h3 class="ml-5">INVOICE</h3>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-5 ">
+                    <div class="float-right">
+                        <img class='img' src="../../../../assets/—Pngtree—colorful watercolor autumn background_3604728.png"
+                            alt="my name">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class=" px-5 ">
+
+                <div class="row mt-5 mb-3">
+                    <div class="col-md-6 mt-5 ">
+                        <div>
+                            <h4>From</h4>
+                        </div>
+                        <div class="p-3">
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Name </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span>
+                                        <h5>{{companyData.name}}</h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>E-mail </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.email}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Address </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.address}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Phone </span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.phone}}</span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Business No</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{companyData.businessNumber}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6 mt-5 ">
+                        <div>
+                            <h4>Bill To</h4>
+                        </div>
+                        <div class="p-3">
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Name</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span>
+                                        <h5> {{customerData.name}}</h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>E-mail</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.email}}</span>
+                                </div>
+                            </div>
+
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Address</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.address}}</span>
+                                </div>
+                            </div>
+
+                            <div class=" row mb-2">
+                                <div class="col-md-3">
+                                    <span>Phone</span>
+                                </div>
+                                <div class=" col-md-9">
+                                    <span> {{customerData.phone}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="px-5">
+                <h4>Vehicle Details</h4>
+                <ul class="p-3 ">
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Vehicle Number</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.vehicle_number}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Chechis Number</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.chechis_number}}}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" row mb-2">
+                            <div class="col-md-2">
+                                <span>Vehicle Model</span>
+                            </div>
+                            <div class=" col-md-3">
+                                <span> {{vehicleData.vehicle_model}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="px-5">
+                <h4>Invoice Details</h4>
+                <ul class="p-3 ">
+                    <li>
+                        <div class=" row mb-2">
+
+                            <span class="col-2">Invoice Number </span>
+
+
+                            <span class="col-6"> {{invoice_number}}</span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" row mb-2">
+
+                            <span class="col-2">Date </span>
+
+
+                            <span class="col-6"> {{date}}</span>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <div class="row total ">
+                <div class="col-6">
+                    <h5>PART NAME</h5>
+                </div>
+                <div class="col-2">
+                    <h5>RATE</h5>
+                </div>
+                <div class="col-2">
+                    <h5>QUANTITY</h5>
+                </div>
+                <div class="col-2">
+                    <h5>TOTAL</h5>
+                </div>
+            </div>
+            <br>
+            <div class="mb-2" *ngFor='let item of partData'>
+                <div class="row mb-2 ml-2">
+                    <div class="col-6 ">{{item.partName}}</div>
+                    <div class="col-2 ">{{item.price}}</div>
+                    <div class="col-2 ">{{item.quantity}}</div>
+                    <div class="col-2 ">
+                        <h5>{{item.price*item.quantity}}</h5>
+                    </div>
+                </div>
+
+
+            </div>
+            <hr class="bg-dark">
+
+            <div class="row">
+                <div class="col-8"> </div>
+                <div class="col-2 ">
+                    <div class="float-right">Subtotal</div>
+                </div>
+                <div class="col-2">
+                    {{total}} 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8"> </div>
+            <div class="col-2 ">
+                <div class="float-right">Tax(18%)</div>
+            </div>
+            <div class="col-2">
+                {{tax}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8"> </div>
+            <div class="col-2 ">
+                <div class="float-right">
+                    total
+                </div>
+            </div>
+            <div class="col-2">{{total+tax}} </div>
+        </div>
+        <div class="row">
+            <div class="col-8"> </div>
+            <div class="col-2 ">
+                <div class="float-right">
+                    <h4>Balance Due</h4>
+                </div>
+            </div>
+            <div class="col-2">
+                <h4>{{total+tax}}</h4>
+            </div>
+        </div>
+        <hr class="bg-dark">
+
+
+
+
+
+    </div>
+</div>
+</div>

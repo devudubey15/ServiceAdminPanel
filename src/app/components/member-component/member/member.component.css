@@ -1,0 +1,21 @@
+.search-container {
+    margin-top: 150px;
+   
+    background-color: #C0C0C0;
+    border-style: outset;
+    border-width: 10px;
+    border-color: rgb(163, 163, 163);
+    border-radius: 12px;
+    text-align:top;
+}
+.search-input{
+   background: #fafafa; 
+   width: 250px;
+}
+.input{
+    background: transparent;
+    border-style: none;
+    outline: none;
+    width: 100%;
+    align-items: center;
+}

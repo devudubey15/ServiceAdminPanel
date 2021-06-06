@@ -1,0 +1,7 @@
+.container-fluid{
+    background-color: silver;
+    border-style: outset;
+    border-width: 7px;
+    border-radius: 7px;
+    border-color: slategrey;
+}

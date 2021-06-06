@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0  bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start  pt-2 min-vh-100">
+                <a  class="d-flex align-items-center pb-3 px-3 mb-md-0 me-md-auto text-decoration-none">
+                    <span class="fs-4 d-none d-sm-inline text-white fw-bold">Service Admin Panal</span>
+                </a>
+
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+                    id="menu">
+                    <li class="nav-item  w-100 px-3 py-1 " (click)="checkedItems(0)">
+                        <a routerLink='/member' class="nav-link align-middle px-0">
+                            <span class="ms-1 d-none d-sm-inline">Member </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  w-100 px-3  py-1" (click)="checkedItems(1)">
+
+                        <a routerLink='/billing' class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline ">billing</span></a>
+                    </li>
+                    <li class="nav-item  w-100 px-3 py-1  " (click)="checkedItems(2)">
+                        <a routerLink='/track' class="nav-link px-0 align-middle ">
+                            <span class="ms-1 d-none d-sm-inline">Track</span></a>
+
+                    </li>
+                    <li class="nav-item  w-100 px-3 py-1" (click)="checkedItems(3)">
+                        <a routerLink='/employeedata' class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">Employee details</span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item  w-100 px-3 py-1" (click)="checkedItems(4)">
+                        <a routerLink='/payment' class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline"> Payment</span>
+                        </a>
+                    
+                    </li>
+                    <li class="nav-item  w-100 px-3 py-1" (click)="checkedItems(5)">
+                        <a routerLink='/branch' class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline"> Branch Details</span>
+                        </a>
+                    
+                    </li>
+
+                </ul>
+                <hr>
+
+            </div>
+        </div>
+        <div class="col ">
+            <div class="component-container p-lg-4 p-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

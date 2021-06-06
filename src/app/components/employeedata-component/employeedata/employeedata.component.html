@@ -1,0 +1,342 @@
+<div class="container">
+    <div *ngIf='!employeeBtn'>
+        <div class="container-sec  p-3">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Employee Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">e-mail</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Adress</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of allEmployeesDetail; let i = index">
+                        <td>
+                            {{i+1}}
+
+                        </td>
+                        <td class="pointer" (click)='perticularEmployeedetails(item)'>
+                            {{item.empolyeeid}}
+
+                        </td>
+                        <td>
+                            {{item.name}}
+
+                        </td>
+                        <td>
+                            {{item.email}}
+
+                        </td>
+                        <td>
+                            {{item.number}}
+
+                        </td>
+                        <td>
+                            {{item.address}}
+
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">delete</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center align-items-center">
+                <button class="btn btn-primary " type="submit" (click)='addNewEmployee()'>Add New Employee</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf='!employeeDetailBtn'>
+    <div class="container">
+        <div class="container-third p-3 ">
+            <div class="float-right"><button class="btn btn-danger Button-exit " type="submit"
+                    (click)='exitBtnInPerticularEployeeDetail()'> X </button></div>
+
+            <div class="row m-4">
+                <div class="col-md-6">
+                    <div>
+                        <h5 class="ml-4">Employee Details</h5>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Id : </div>
+                            <div class="col-md-7">{{employeeData?.empolyeeid}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Name : </div>
+                            <div class="col-md-7">{{employeeData?.name}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee E-mail : </div>
+                            <div class="col-md-7">{{employeeData?.email}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Number : </div>
+                            <div class="col-md-7">{{employeeData?.number}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Address : </div>
+                            <div class="col-md-7">{{employeeData?.address}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Wage : </div>
+                            <div class="col-md-7">{{employeeData?.dailywage}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Employee Position : </div>
+                            <div class="col-md-7">{{employeeData?.position}}</div>
+                        </div>
+                        <hr>
+                        <h4 class="mb-3">Bank Details </h4>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Bank Name : </div>
+                            <div class="col-md-7">{{employeeData.bankdetails.bankName}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">Account Number : </div>
+                            <div class="col-md-7">{{employeeData.bankdetails.accountNumber}}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="ID col-md-5">IFGC Number : </div>
+                            <div class="col-md-7">{{employeeData.bankdetails.IFGC}}</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class=" row p-5 ">
+                        <div class="card">
+                            <h5 class="card-header">Attentence </h5>
+                            <div class="card-body">
+                                <select class="form-control " required name="present " id="employeeAttendence">
+                                    <option value="Full day">Full Day</option>
+                                    <option value="Half day">Half Day</option>
+                                    <option value="Leave">Paid Leave</option>
+                                    <option value="Leave">Unpaid Leave</option>
+                                </select>
+
+                                <div class="mt-4">
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row px-5">
+                        <div class="card">
+                            <h5 class="card-header"> Attentence Board </h5>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <h5 class="card-title w-50"> first day </h5>
+                                    <div class="d-flex justify-content-center w-50">
+                                        <div class="dot-full mt-2"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <h5 class="card-title w-50"> Second day </h5>
+                                    <div class="d-flex justify-content-center w-50">
+                                        <div class="dot-half"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <h5 class="card-title w-50"> Third day </h5>
+                                    <div class="d-flex justify-content-center w-50">
+                                        <div class="dot-full"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex ">
+                                    <h5 class="card-title w-50"> fourth day </h5>
+                                    <div class="d-flex justify-content-center w-50">
+                                        <div class="dot-leave"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="ml-5 mt-3">
+                <button class="btn btn-primary" type="submit" (click)='perticularEmployeedetailsEdit()'>Edit
+                    Details</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf='!employeeEditBtn'>
+    <div class="container">
+        <div class="container-four">
+            <div class="row p-5">
+                <div class="col-3"></div>
+                <div class="col-6">
+
+                    <div class="mb-3">
+                        <div class="d-flex">
+                            <h5>Employee Id : </h5>
+                            <h6 class="ml-4 mt-1">{{employeeData?.empolyeeid}}</h6>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Emplpyee Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter The Name Of Employee " [(ngModel)]='employeeData.name'>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Employee Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail"
+                            placeholder="Enter The Email Of Employee" [(ngModel)]='employeeData.email'>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Employee Number</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter The Number Of Employee" [(ngModel)]='employeeData.number'>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Employee Address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter The Address Of Employee" [(ngModel)]='employeeData.address'>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Employee Wage</label>
+                        <input type="email" class="form-control " id="exampleInputEmail1"
+                            placeholder="Enter The Wage Of Employee" [(ngModel)]='employeeData.dailywage'>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label ID">Employee Position</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                            placeholder="Enter The Position Of Employee" [(ngModel)]='employeeData.position'>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" (click)='saveEditedDetails()'>Save Details</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf='!employeeAddBtn'>
+    <div class="container container-four p-2">
+
+
+        <div class="mb-3 p-4">
+            <div class="d-flex">
+                <h5>Employee Id : </h5>
+                <h6 class="ml-4 mt-1">{{newEmployeeId}}</h6>
+            </div>
+
+        </div>
+        <div class="row p-1">
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Emplpyee Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Name Of Employee " [(ngModel)]='employeeData.name'>
+
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Employee Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail"
+                        placeholder="Enter The Email Of Employee" [(ngModel)]='employeeData.email'>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-1">
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Employee Number</label>
+                    <input type="number" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Number Of Employee" [(ngModel)]='employeeData.number'>
+
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Employee Address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Address Of Employee" [(ngModel)]='employeeData.address'>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-1">
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Employee Wage</label>
+                    <input type="email" class="form-control " id="exampleInputEmail1"
+                        placeholder="Enter The Wage Of Employee" [(ngModel)]='employeeData.dailywage'>
+
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4 ">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label ID">Employee Position</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Position Of Employee" [(ngModel)]='employeeData.position'>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h4 class="mb-3">Bank Details</h4>
+            <div class="row p-1">
+                <div class="col-4 ">
+                    <label for="exampleInputEmail1" class="form-label ID">Bank Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Position Of Employee" [(ngModel)]='employeeData.bankdetails.bankName'>
+                </div>
+                <div class="col-2 "></div>
+                <div class="col-4 ">
+                    <label for="exampleInputEmail1" class="form-label ID">Account Number</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Position Of Employee"
+                        [(ngModel)]='employeeData.bankdetails.accountNumber'>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-4 ">
+                    <label for="exampleInputEmail1" class="form-label ID">IFGC Nmumber</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                        placeholder="Enter The Position Of Employee" [(ngModel)]='employeeData.bankdetails.IFGC'>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" (click)='saveNewEmployee()'>Save Details</button>
+        </div>
+
+
+
+    </div>
+</div>

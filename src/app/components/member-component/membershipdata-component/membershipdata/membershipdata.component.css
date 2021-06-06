@@ -1,0 +1,10 @@
+.container-sec{
+    background-color: silver;
+    border: outset;
+    border-radius: 12px;
+    border-width: 7px;
+    border-color: gray;
+}
+.list{
+    list-style: none;
+}

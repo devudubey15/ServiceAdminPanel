@@ -1,0 +1,110 @@
+ <div class="container-fluid">
+    <div class="d-flex justify-content-center mt-4">
+        <h3>Branch Details</h3>
+    </div>
+    <hr class="bg-dark" >
+    <div class="row ml-5 mr-5 mt-5">
+        <div class="col-6">
+            <div class="row mb-4">
+                <div class="col-4">
+                    <h5>Branch Code:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                   {{branchDetail.branchCode}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-4">
+                    <h5>Branch Name:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    {{branchDetail.branchName}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-4">
+                    <h5>Branch Address:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    {{branchDetail.branchAddress}}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row mb-2">
+               <div class="col">
+                    <h4>Contact Details :</h4>
+               </div>
+            </div>
+            <hr class="bg-dark">
+            <div class="row mb-4">
+                <div class="col-4">
+                    <h5>Number:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    {{branchDetail.contactDetails.number}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-4">
+                    <h5>E-mail:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-4">
+                    {{branchDetail.contactDetails.email}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="bg-dark">
+    <div class="row ml-5 mr-5 mt-5">
+        <div class="col-6">
+            <div class="row mb-2">
+                <div class="col">
+                    <h4>Service Center Details :</h4>
+                </div>
+            </div>
+            <hr class="bg-dark">
+            <div class="row mb-4">
+                <div class="col-5">
+                    <h5>Owner Name:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-6">
+                     {{branchDetail.serviceCenterDetail.oName}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-5">
+                    <h5> Owner Address:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-6">
+                    {{branchDetail.serviceCenterDetail.oAddress}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-5">
+                    <h5> Owner Phone-No:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-6">
+                    {{branchDetail.serviceCenterDetail.oNumber}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-5">
+                    <h5>Owner E-mail:</h5>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-6">
+                    {{branchDetail.serviceCenterDetail.oEmail}}
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
