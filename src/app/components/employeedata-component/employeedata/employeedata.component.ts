@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employeedata',
@@ -7,46 +8,106 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeedataComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private employeeService: EmployeeService,
+  ) { }
 
   ngOnInit(): void {
+    this.getEmployees()
+    console.log(this.employeeData)
   }
+   employeeList: any = [{}];
+   employeeId:any = []
+   employeeIndex  = 0;
+   attendanceList:any =[]
+  
+   today_date = new Date()
+
+  ///get employees
+  getEmployees(){
+      this.employeeService.getEmployees().subscribe((result) =>{
+        this.employeeId = [];
+        this.employeeList  = result.map(e =>{
+          this.employeeId.push(e.payload.doc.id);
+          return e.payload.doc.data();
+        });  
+      }) 
+  }
+  // add employees 
+  addEmployee(payload:any){
+    this.employeeService.addEmployee(payload);
+  }
+  // delete employee
+  deleteEmployee(id:string){
+    if(confirm("Are you sure")){
+           this.employeeService.deleteEmployee(id);
+    }else{
+      alert(" Employee not deleted")
+    }
+  }
+ ///update details
+ updateEmployee(id : string, payload :any){
+   this.employeeService.updateEmployee(id,payload);
+ }
+
+  /// attendance
+  attendance(event:any){
+       this.attendanceList = this.employeeData.attendance_detail;
+       var attendance  = {date:this.today_date.getDate(),attendance_status:event.value};
+      this.attendanceList.push(attendance);
+      this.employeeData.attendance_detail = this.attendanceList
+      this.updateEmployee(this.employeeId[this.employeeIndex], this.employeeData)
+      
+  }
+
   employeeBtn = false;
   employeeDetailBtn=true;
   employeeEditBtn = true;
   employeeAddBtn=true;
   attendence =null;
   newEmployeeId:any=null;
-
-  date = null;
+  date:any=null;
+  attendence_status:any=null;
+  
 
   employeeData = {
-    empolyeeid: '', name: '', email: '', number: '', address: '', dailywage: '', position: '',
-    bankdetails:{ 
-      bankName:'',accountNumber:'',IFGC:''
+    id: '', 
+    name: '', 
+    email: '', 
+    mobile: '', 
+    address: '', 
+    wage: '', 
+    position: '',
+    bank_detail:{ 
+      bank_name:'',
+      account:'',
+      ifsc_code:''
     },
-    attendence:[],
-     
-    
-    currentStatusOfPayment:''
-    
-    
+    attendance_detail:[
+        {
+         date:'',
+         attendance_status:''
+        }
+    ], 
+  };
+  addEmployeeData = {
+    id: '', 
+    name: '', 
+    email: '', 
+    mobile: '', 
+    address: '', 
+    wage: '', 
+    position: '',
+    bank_detail:{ 
+      bank_name:'',
+      account:'',
+      ifsc_code:''
+    },
+    attendance_detail:[
+       
+    ], 
   };
 
-  allEmployeesDetail: any = [
-    {
-      empolyeeid: 'ahoah', name: 'rana r', email: 'ranjeetsingh1978@gmail.com', number: '+911234567890', address: 'hemant vihar, barra2, kanpur, up, india', dailywage: '₹2000',
-      position: 'GM'
-    },
-    {
-      empolyeeid: 'BHK', name: 'rana ranjeet singh rajawat', email: 'ranjeetsingh1978@gmail.com', number: '+911234567890', address: 'hemant vihar, barra2, kanpur, up, india', dailywage: '₹2000',
-      position: 'GM'
-    },
-    {
-      empolyeeid: 'gbh', name: 'rana ranjeet singh rajawat', email: 'ranjeetsingh1978@gmail.com', number: '+911234567890', address: 'hemant vihar, barra2, kanpur, up, india', dailywage: '₹2000',
-      position: 'GM'
-    }
-  ]
 
   addNewEmployee(){
 
@@ -57,12 +118,12 @@ export class EmployeedataComponent implements OnInit {
     this.newEmployeeId = this.generateString(10);
   }
   saveNewEmployee(){
-    console.log(this.employeeData);
+    this.addEmployeeData.id = this.newEmployeeId;
+    this.addEmployee(this.addEmployeeData);
     this.employeeBtn = false;
     this.employeeDetailBtn = true;
     this.employeeEditBtn = true;
-    this.employeeAddBtn = true;
-    
+    this.employeeAddBtn = true;  
   }
 
   attendenceData = 
@@ -79,11 +140,12 @@ export class EmployeedataComponent implements OnInit {
      
   //   }
  // }
-  perticularEmployeedetails(data:any) {
+  perticularEmployeedetails(data:any, index:number) {
     this.employeeBtn = true;
     this.employeeEditBtn = true;
     this.employeeDetailBtn = false;
     this.employeeData = data;
+    this.employeeIndex  = index;
   }
   perticularEmployeedetailsEdit(){
     this.employeeEditBtn = false;
@@ -93,11 +155,12 @@ export class EmployeedataComponent implements OnInit {
   }
   saveEditedDetails()
     {
-    
+     this.updateEmployee(this.employeeId[this.employeeIndex], this.employeeData)
     this.employeeAddBtn = true;
     this.employeeBtn = true;
     this.employeeEditBtn = true;
     this.employeeDetailBtn = false;
+     
     }
   exitBtnInPerticularEployeeDetail()
   {

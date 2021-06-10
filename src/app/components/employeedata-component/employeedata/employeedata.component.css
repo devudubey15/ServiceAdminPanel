@@ -32,7 +32,7 @@ thead {
     border-radius: 5px;
 }
 
-.dot-full {
+.fd {
     align-items: center;
     height: 15px;
     width: 15px;
@@ -43,7 +43,7 @@ thead {
     display: inline-block;
 }
 
-.dot-half {
+.hd{
     align-items: center;
     height: 15px;
     width: 15px;
@@ -54,7 +54,7 @@ thead {
     display: inline-block;
 }
 
-.dot-leave {
+.unl {
     align-items: center;
     height: 15px;
     width: 15px;
@@ -63,4 +63,18 @@ thead {
     background-color: rgb(131, 20, 20);
     border-radius: 50%;
     display: inline-block;
+}
+.pl{
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: black;
+    border-width: 2px;
+    background-color: rgb(4, 12, 116);
+    border-radius: 50%;
+    display: inline-block; 
+}
+.scroll-bar{
+    height:200px;
+    overflow-y: scroll;
 }
