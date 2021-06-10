@@ -19,3 +19,18 @@
     width: 100%;
     align-items: center;
 }
+.container-sec{
+    background-color: silver;
+    border: outset;
+    border-radius: 12px;
+    border-width: 7px;
+    border-color: gray;
+}
+.list{
+    list-style: none;
+}
+.cancleBtn {
+    color: cornsilk;
+    background-color: rgb(192, 61, 61);
+    ;
+}
