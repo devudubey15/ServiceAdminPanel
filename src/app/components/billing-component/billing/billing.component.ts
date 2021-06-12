@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
 import {MembershipService} from '../../../services/membership_service/membership.service';
 import {BranchDetailService} from '../../../services/branch/branch-detail.service';
-
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
   selector: 'app-billing',
@@ -10,6 +14,7 @@ import {BranchDetailService} from '../../../services/branch/branch-detail.servic
 })
 export class BillingComponent implements OnInit {
 
+  @ViewChild('pdfTable') pdfTable: ElementRef;
   constructor(
     private __membershipService: MembershipService,
     private __branchService:BranchDetailService
@@ -88,10 +93,21 @@ export class BillingComponent implements OnInit {
     this.tax = (this.total*18)/100;
     this.branchDetail.worth.billing += (this.tax+this.total);
     this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchDetail);
+   
   }
   
   
- 
+  public downloadAsPDF(event:any) {
+    const doc = new jsPDF();
+    //  console.log(event.innerHTML);
+    //const pdfTable = this.pdfTable.nativeElement;
+    
+    var html = htmlToPdfmake(event.innerHTML);
+     
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open(); 
+     
+  }
 
 
 
