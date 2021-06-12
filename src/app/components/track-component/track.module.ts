@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { TrackRoutingModule } from './track.routing.module';
 import { TrackComponent } from './track/track.component';
 
@@ -16,6 +17,7 @@ import { TrackComponent } from './track/track.component';
     imports: [
         CommonModule,
         TrackRoutingModule,
+        NgApexchartsModule,
         FormsModule
     ],
 

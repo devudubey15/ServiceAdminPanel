@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-4">
-                   {{branchData.branch_code}}
+                   {{branchData?.branch_code}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-4">
-                    {{branchData.branch_name}}
+                    {{branchData?.branch_name}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-4">
-                    {{branchData.branch_address}}
+                    {{branchData?.branch_address}}
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-4">
-                    {{branchData.contact_details.mobile}}
+                    {{branchData?.contact_details?.mobile}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -55,14 +55,14 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-4">
-                    {{branchData.contact_details.email}}
+                    {{branchData?.contact_details?.email}}
                 </div>
             </div>
         </div>
     </div>
     <hr class="bg-dark">
-    <div class="row ml-5 mr-5 mt-5">
-        <div class="col-6">
+    <div class="row ml-5 mt-5">
+        <div class="col-5">
             <div class="row mb-2">
                 <div class="col">
                     <h4>Service Center Details :</h4>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-6">
-                     {{branchData.service_center_details.owner_name}}
+                     {{branchData?.service_center_details?.owner_name}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-6">
-                    {{branchData.service_center_details.owner_address}}
+                    {{branchData?.service_center_details?.owner_address}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-6">
-                    {{branchData.service_center_details.mobile}}
+                    {{branchData?.service_center_details?.mobile}}
                 </div>
             </div>
             <div class="row mb-4">
@@ -102,8 +102,33 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col-6">
-                    {{branchData.service_center_details.email}}
+                    {{branchData?.service_center_details?.email}}
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5" *ngIf="!flag">
+            <h4 class="text-dark text-center mb-3">Other Payment Details</h4>
+            <div class="payment-card-container p-3">
+                <div class="card bg-info px-4 py-2 mb-3" *ngFor="let item of branchData?.payment_others">
+                    <div class="d-flex justify-content-between flex-row ">
+                      <span class="text-white "> Payment Of : {{ item?.payment_type }}</span> 
+                      <span class="text-white "> Paid To : {{ item?.paid_to}}</span> 
+                    </div>
+                    <div class="d-flex justify-content-between flex-row mt-2">
+                      <span class="text-white "> Invoice Date : {{ item?.invoice_date | date }}</span> 
+                      <span class="text-white "> Due Date : {{ item?.due_date | date }}</span> 
+                    </div>
+                    <div class="d-flex justify-content-center flex-row mt-2">
+                     
+                      <span class="text-white"> Amount :  ₹{{ item?.amount | number }}</span> 
+                    </div>
+                  </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3 mb-3">
+                <button class="btn btn-month text-white py-2 px-4" (click)="clearAllBills()">
+                    Clear All Bills
+                </button>
             </div>
         </div>
     </div>
