@@ -15,7 +15,7 @@
                                     <span>Name </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.name}}</span>
+                                    <span> {{branchDetail?.branch_name}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -23,7 +23,7 @@
                                     <span>E-mail </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.email}}</span>
+                                    <span> {{branchDetail?.contact_details?.email}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -31,7 +31,7 @@
                                     <span>Address </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.address}}</span>
+                                    <span>{{branchDetail?.branch_address}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -39,7 +39,7 @@
                                     <span>Phone </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.phone}}</span>
+                                    <span> {{branchDetail?.contact_details?.mobile}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -47,7 +47,7 @@
                                     <span>Business No</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.businessNumber}}</span>
+                                    <span> {{branchDetail?.branch_code}}</span>
                                 </div>
                             </div>
 
@@ -60,13 +60,16 @@
                         <div>
                             <h4>Bill To</h4>
                         </div>
-                        <div class="p-3">
+                        <div class="mt-3" *ngIf = "!memberShip">
+                            <input type="text" class="name col-md-7" placeholder="Membership ID" #event (blur)="membershipId(event)" >
+                        </div>
+                        <div class="p-3" *ngIf = "memberShip">
                             <div class=" row mb-2">
                                 <div class="col-md-3">
                                     <span>Name</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.name}}</span>
+                                    <span> {{membesrShipDetail?.name}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -74,7 +77,7 @@
                                     <span>E-mail</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.email}}</span>
+                                    <span> {{membesrShipDetail?.email}}</span>
                                 </div>
                             </div>
 
@@ -83,7 +86,7 @@
                                     <span>Address</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.address}}</span>
+                                    <span> {{membesrShipDetail?.address}}</span>
                                 </div>
                             </div>
 
@@ -92,7 +95,7 @@
                                     <span>Phone</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.phone}}</span>
+                                    <span> {{membesrShipDetail?.mobile}}</span>
                                 </div>
                             </div>
                         </div>
@@ -105,14 +108,14 @@
             <hr class="divider lite margin">
             <div class="px-5">
                 <h4>Vehicle Details</h4>
-                <ul class="p-3 ">
+                <ul class="p-3" *ngIf = "memberShip">
                     <li>
                         <div class=" row mb-2">
                             <div class="col-md-2">
                                 <span>Vehicle Number</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.vehicle_number}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.rc_number}}</span>
                             </div>
                         </div>
                     </li>
@@ -122,7 +125,7 @@
                                 <span>Chechis Number</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.chechis_number}}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.chesis_number}}</span>
                             </div>
                         </div>
                     </li>
@@ -132,7 +135,7 @@
                                 <span>Vehicle Model</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.vehicle_model}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.modal}}</span>
                             </div>
                         </div>
                     </li>
@@ -214,7 +217,7 @@
         </div>
 
         <div class="generatebtn">
-            <button type="button" class="btn btn-lg btn-primary mt-5" (click)='generateBill()'>GENERATE BILL</button>
+            <button type="button" class="btn btn-lg btn-primary mt-5" (click)='generateBill()' [disabled]="!memberShip">GENERATE BILL</button>
         </div>
 
     </div>
@@ -223,22 +226,15 @@
 <div *ngIf='billgenerate'>
     <div class="container">
         <div class="container-third bg-light p-5">
-            
-            <div class="row ">
-                <div class="col-md-6 mt-5 ">
-                    <div class="float-left mb-5">
-                        <h3 class="ml-5">INVOICE</h3>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-5 ">
-                    <div class="float-right">
-                        <img class='img' src="../../../../assets/—Pngtree—colorful watercolor autumn background_3604728.png"
-                            alt="my name">
-
-                    </div>
-                </div>
+            <div class="float-right">
+                <img class='img' src="../../../../assets/—Pngtree—colorful watercolor autumn background_3604728.png"
+                    alt="my name">
 
             </div>
+            <div class="float-left ">
+                <h3 class="ml-5">INVOICE</h3>
+            </div>
+            
 
 
             <div class=" px-5 ">
@@ -254,9 +250,7 @@
                                     <span>Name </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span>
-                                        <h5>{{companyData.name}}</h5>
-                                    </span>
+                                    <span> {{branchDetail?.branch_name}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -264,7 +258,7 @@
                                     <span>E-mail </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.email}}</span>
+                                    <span> {{branchDetail?.contact_details?.email}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -272,7 +266,7 @@
                                     <span>Address </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.address}}</span>
+                                    <span>{{branchDetail?.branch_address}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -280,7 +274,7 @@
                                     <span>Phone </span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.phone}}</span>
+                                    <span> {{branchDetail?.contact_details?.mobile}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -288,7 +282,7 @@
                                     <span>Business No</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{companyData.businessNumber}}</span>
+                                    <span> {{branchDetail?.branch_code}}</span>
                                 </div>
                             </div>
 
@@ -301,15 +295,13 @@
                         <div>
                             <h4>Bill To</h4>
                         </div>
-                        <div class="p-3">
+                        <div class="p-3" *ngIf = "memberShip">
                             <div class=" row mb-2">
                                 <div class="col-md-3">
                                     <span>Name</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span>
-                                        <h5> {{customerData.name}}</h5>
-                                    </span>
+                                    <span> {{membesrShipDetail?.name}}</span>
                                 </div>
                             </div>
                             <div class=" row mb-2">
@@ -317,7 +309,7 @@
                                     <span>E-mail</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.email}}</span>
+                                    <span> {{membesrShipDetail?.email}}</span>
                                 </div>
                             </div>
 
@@ -326,7 +318,7 @@
                                     <span>Address</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.address}}</span>
+                                    <span> {{membesrShipDetail?.address}}</span>
                                 </div>
                             </div>
 
@@ -335,7 +327,7 @@
                                     <span>Phone</span>
                                 </div>
                                 <div class=" col-md-9">
-                                    <span> {{customerData.phone}}</span>
+                                    <span> {{membesrShipDetail?.mobile}}</span>
                                 </div>
                             </div>
                         </div>
@@ -344,17 +336,16 @@
                 </div>
             </div>
 
-
             <div class="px-5">
                 <h4>Vehicle Details</h4>
-                <ul class="p-3 ">
+                <ul class="p-3" *ngIf = "memberShip">
                     <li>
                         <div class=" row mb-2">
                             <div class="col-md-2">
                                 <span>Vehicle Number</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.vehicle_number}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.rc_number}}</span>
                             </div>
                         </div>
                     </li>
@@ -364,7 +355,7 @@
                                 <span>Chechis Number</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.chechis_number}}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.chesis_number}}</span>
                             </div>
                         </div>
                     </li>
@@ -374,7 +365,7 @@
                                 <span>Vehicle Model</span>
                             </div>
                             <div class=" col-md-3">
-                                <span> {{vehicleData.vehicle_model}}</span>
+                                <span> {{membesrShipDetail?.vehical_detail?.modal}}</span>
                             </div>
                         </div>
                     </li>

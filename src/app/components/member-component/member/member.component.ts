@@ -27,7 +27,7 @@ export class MemberComponent implements OnInit {
          this.membershipData  = result[0];
          this.searchBar = false;
        }
-      //  console.log(this.membershipData)
+    
     })
   
   }

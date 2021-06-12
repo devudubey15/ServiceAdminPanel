@@ -15,7 +15,7 @@ export class BranchDetailService {
       return this.firestore.collection('branch_detail').doc(id).valueChanges();
   }
 
-  updateBranchDetail(id:string, payload:any){
+  updateBranchDetail(id:any, payload:any){
     return this.firestore.doc('branch_detail/'+id).update(payload);
   }
   
