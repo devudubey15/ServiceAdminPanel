@@ -13,13 +13,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of allEmployeesDetail; let i = index">
+                <tr *ngFor="let item of duePaymentEmployeeList; let i = index">
                     <td>
                         {{i+1}}
 
                     </td>
                     <td>
-                        {{item.employeeid}}
+                        {{item.id}}
 
                     </td>
                     <td>
@@ -31,10 +31,10 @@
 
                     </td>
                     <td>
-                        {{item.number}}
+                        {{item.mobile}}
 
                     </td>
-                    <td class="pointer" (click)='sallaryCount(item)'>
+                    <td class="pointer" (click)='sallaryCount(i)'>
                         Click Here
                     </td>
 
@@ -69,7 +69,7 @@
                     <h6>Employee Id : </h6>
                 </div>
                 <div class="col-7">
-                    <p>{{sallaryCountObj.employeeid}}</p>
+                    <p>{{duePaymentEmployeeList[index]?.id}}</p>
                 </div>
             </div>
             <hr>
@@ -78,7 +78,7 @@
                     <h6>Name : </h6>
                 </div>
                 <div class="col-7">
-                    <p>{{sallaryCountObj.name}}</p>
+                    <p>{{duePaymentEmployeeList[index]?.name}}</p>
                 </div>
             </div>
             <hr>
@@ -97,7 +97,7 @@
                     <h6>Bank : </h6>
                 </div>
                 <div class="col-7">
-                    <p>{{sallaryCountObj.bankname}}</p>
+                    <p>{{duePaymentEmployeeList[index]?.bank_detail?.bank_name}}</p>
                 </div>
             </div>
             <hr>
@@ -106,7 +106,7 @@
                     <h6>Account Number : </h6>
                 </div>
                 <div class="col-7">
-                    <p>{{sallaryCountObj.accountno}}</p>
+                    <p>{{duePaymentEmployeeList[index]?.bank_detail?.account}}</p>
                 </div>
             </div>
             <hr>
@@ -115,7 +115,7 @@
                     <h6>IFGC Number : </h6>
                 </div>
                 <div class="col-7">
-                    <p>{{sallaryCountObj.ifgcno}}</p>
+                    <p>{{duePaymentEmployeeList[index]?.bank_detail?.ifsc_code}}</p>
                 </div>
             </div>
             <hr>
@@ -129,7 +129,7 @@
             </div>
             <hr>
             <div class="d-flex justify-content-center align-items-center">
-                <button type="submit" class="btn btn-primary  ">Submit</button>
+                <button type="submit" class="btn btn-primary  " (click)="employeePayment()">Submit</button>
             </div>
         </form>
     </div>
@@ -138,14 +138,14 @@
 <div class="container-2 w-100 vh-100 d-flex justify-content-center align-items-center" *ngIf="!formIf">
     <div class="container-third p-3">
 
-        <form>
+        
 
 
 
             <div class="row mb-3 ">
                 <div class="col-8">
                     <label class="form-label">Type Of Payment</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" placeholder="Type of payment" [(ngModel)]="paymentOthers.payment_type">
 
                 </div>
                 <div class="col-md-4">
@@ -158,11 +158,11 @@
                 <div class="col-md-6">
 
                     <label class="form-l1">Paid To</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="paymentOthers.paid_to">
                 </div>
                 <div class="col-6">
                     <label class="form-l2">Ammount</label>
-                    <input type="text" class="form-control">
+                    <input type="number" class="form-control" [(ngModel)]="paymentOthers.amount">
                 </div>
 
 
@@ -171,20 +171,18 @@
             <div class=" row mb-3 ">
                 <div class="col-6">
                     <label class="form-l1">Invoice Date</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" [(ngModel)]="paymentOthers.invoice_date">
                 </div>
                 <div class="col-6">
                     <label class="form-l2">Due Date</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" [(ngModel)]="paymentOthers.due_date">
                 </div>
 
             </div>
 
-
-
             <div class="d-flex justify-content-center align-items-center">
-                <button type="submit" class="btn btn-primary  ">Submit</button>
+                <button type="submit" class="btn btn-primary" (click)="otherPayment()">Pay</button>
             </div>
-        </form>
+        
     </div>
 </div>
