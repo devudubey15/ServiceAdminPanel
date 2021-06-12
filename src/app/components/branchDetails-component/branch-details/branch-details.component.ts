@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BranchDetailsService } from 'src/app/services/branch-details.service';
-import {BranchDetail} from '../../../interfaces/interface'
+import { BranchDetailService} from '../../../services/branch/branch-detail.service';
+
 @Component({
   selector: 'app-branch-details',
   templateUrl: './branch-details.component.html',
@@ -9,7 +9,7 @@ import {BranchDetail} from '../../../interfaces/interface'
 export class BranchDetailsComponent implements OnInit {
   public branchData:any;
   constructor(
-    private branchService:BranchDetailsService
+    private branchService: BranchDetailService
   ) { 
   }
   

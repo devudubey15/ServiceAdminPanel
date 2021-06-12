@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class EmployeeService {
 
   constructor(
@@ -24,6 +26,4 @@ deleteEmployee(id:string){
 updateEmployee(id:string, payload:any){
   this.firestore.doc("employee_detail/"+id).update(payload);
 }
-
-
 }

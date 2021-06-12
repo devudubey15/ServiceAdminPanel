@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-@Injectable()
-export class MemberService {
-
+@Injectable({
+  providedIn: 'root'
+})
+export class MembershipService {
   constructor(
     private firestore: AngularFirestore
   ) { }

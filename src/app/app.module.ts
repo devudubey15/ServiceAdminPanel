@@ -9,6 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './bar/sidebar/sidebar/sidebar.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { BranchDetailService } from './services/branch/branch-detail.service';
+import { EmployeeService } from './services/employee/employee.service';
+import { MembershipService } from './services/membership_service/membership.service';
 
 
 @NgModule({
@@ -24,7 +27,12 @@ import { AuthenticationComponent } from './components/authentication/authenticat
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    BranchDetailService,
+    EmployeeService,
+    MembershipService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

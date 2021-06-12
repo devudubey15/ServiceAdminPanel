@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import {BranchDetail} from '../interfaces/interface'
-
-@Injectable()
-export class BranchDetailsService {
+@Injectable({
+  providedIn: 'root'
+})
+export class BranchDetailService {
 
   constructor(
     private firestore : AngularFirestore
@@ -15,7 +15,8 @@ export class BranchDetailsService {
       return this.firestore.collection('branch_detail').doc(id).valueChanges();
   }
 
-  updateBranchDetail(id:string, payload:BranchDetail){
+  updateBranchDetail(id:string, payload:any){
     return this.firestore.doc('branch_detail/'+id).update(payload);
   }
+  
 }
