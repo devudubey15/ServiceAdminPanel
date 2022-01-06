@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BranchDetailsComponent } from './branch-details/branch-details.component';
 import { BranchDetailsRoutingModule } from './branchDetails.routing.module';
 
-
-
 @NgModule({
     declarations: [
         
@@ -17,6 +15,7 @@ import { BranchDetailsRoutingModule } from './branchDetails.routing.module';
         BranchDetailsRoutingModule,
         FormsModule
     ],
+    
 
 })
 export class BranchDetailsModule { }

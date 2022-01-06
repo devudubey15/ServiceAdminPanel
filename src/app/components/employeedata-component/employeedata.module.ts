@@ -12,11 +12,12 @@ import { EmployeedataComponent } from './employeedata/employeedata.component';
     
     EmployeedataComponent
   ],
-    imports: [
-        CommonModule,
-        EmployeedataRoutingModule,
-        FormsModule
-    ],
+  imports: [
+      CommonModule,
+      EmployeedataRoutingModule,
+      FormsModule
+  ],
+ 
 
 })
 export class EmployeedataModule { }

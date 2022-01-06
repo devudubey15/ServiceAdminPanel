@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -7,26 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _authService: AuthService,
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
+     this.authCheck();
   }
-  userId:any='d';
-  password:any='1';
-  authPage=false;
+
+  authPage = false;
   
 
   authanticationCheck(username:any,pass:any){
-    if(username.value==this.userId && pass.value == this.password){
-      this.authPage = true;
-     
-    }
-   else
-   {
-      alert("UserID or Password is incorrect");
-   }
-    
+       this._authService.authentication(pass.value).subscribe((result:any) =>{
+          //console.log(result[0].payload.doc.id);
+          if( result.length <=0){
+            alert("UserID or Password is incorrect");
+          }else{
+            localStorage.setItem('Auth_id', result[0].payload.doc.id);
+            this.authPage = true;
+          }
+       })
   }
+
+  authCheck(){
+    let id = null;
+    id = localStorage.getItem('Auth_id');
+    if( id == null ){
+      this.authPage = false;
+    }else{
+      this._router.navigate(['/member']);
+      this.authPage = true;
+    }
+  }
+
 
 
 }

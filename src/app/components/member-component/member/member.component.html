@@ -1,24 +1,167 @@
-<div class="container">
-    
-        <div class="d-flex justify-content-center">
-            <div class="search-container w-50 mb-5">
-                <div class="text-center mt-4">
-                    <p class="h2">Membership Search</p>
-                </div>
-                <div class="d-flex justify-content-center align-item-center mb-5">
-                    <div class="d-flex mt-4">
-                        <div class="rounded search-input px-2 py-1">
-                            <input class="input mt-1" type="text" placeholder="Enter Number" aria-label="Search">
-                        </div>
-                        <div class="ml-3" routerLink='/membershipdata'>
-                            <button class="btn btn-outline-dark py-2 px-3" type="submit">Search</button>
-                        </div>
+<div class="container" *ngIf ="searchBar">
+    <div class="d-flex justify-content-center">
+        <div class="search-container w-50 mb-5">
+            <div class="text-center mt-4">
+                <p class="h2">Membership Search</p>
+            </div>
+            <div class="d-flex justify-content-center align-item-center mb-5">
+                <div class="d-flex mt-4">
+                    <div class="rounded search-input px-2 py-1">
+                        <input class="input mt-1" #attr type="text" placeholder="Enter Number" aria-label="Search">
+                    </div>
+                    <div class="ml-3">
+                        <button class="btn btn-outline-dark py-2 px-3" type="submit" (click)="searchMember(attr)">Search</button>
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+</div>
+<div class="container" *ngIf ="!searchBar">
+    <div class="container-sec mt-4">
+        <button class="btn btn-md cancleBtn float-right d-flex mr-3 mt-3 fs-1" type="submit"
+                        (click)="back()">X</button>
+        <h2 class="text-center mt-2 mb-2 ">Membership Details</h2>
+        
+        <hr>
+        <li class="list ml-4 my-4">
+            <h4>Personal Details</h4>
+        </li>
+        <ul class="unordered-list ml-2 my-1">
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Name :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                        {{membershipData.name}}
+                    </div>
+                </div>
+            </li>
+            <li><div class="row">
+                <div class="col-4">
+                    <h6>Addess :</h6>
+                </div>
+                
+                <div class="col-7">
+                    {{membershipData.address}}
+                </div>
+            </div> </li>
+            <li>
+            <div class="row">
+                <div class="col-4">
+                    <h6>Number :</h6>
+                </div>
+                
+                <div class="col-7">
+                    {{membershipData.mobile}}
+                </div>
+            </div>
+            </li>
+            <li>
+            <div class="row">
+                <div class="col-4">
+                    <h6>E-mail :</h6>
+                </div>
+                
+                <div class="col-7">
+                    {{membershipData.email}}
+                </div>
+            </div>
+            </li>
+        </ul>
+        <hr>
+        <li class="list ml-4 my-4">
+            <h4>Vehicle Details</h4>
+        </li>
+        <ul class="unordered-list ml-2 my-1">
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                       <h6>Model Name :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                        {{membershipData.vehical_detail.modal}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Registration Certificate (RC) Number :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                        {{membershipData.vehical_detail.rc_number}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Chassis Number :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                        {{membershipData.vehical_detail.chesis_number}}
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+        <hr>
+        <li class="list ml-4 my-4">
+            <h4>Membership Details</h4>
+        </li>
+        <ul class="unordered-list ml-2 my-1">
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Membership ID :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                    {{membershipData.membership_detail.membership_id}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>Membership Started On :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                        {{membershipData.membership_detail.start}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                       <h6>Membership Ends On :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                    {{membershipData.membership_detail.end}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                       <h6>Membership Type :</h6>
+                    </div>
+                    
+                    <div class="col-7">
+                    {{membershipData.membership_detail.membership_type}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <hr>
 
-    
-
+    </div>
 </div>

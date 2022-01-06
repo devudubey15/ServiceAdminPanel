@@ -5,3 +5,7 @@
     border-radius: 7px;
     border-color: slategrey;
 }
+.payment-card-container{
+    height:200px;
+    overflow-y: scroll;
+}

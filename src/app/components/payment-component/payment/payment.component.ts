@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { EmployeeService } from '../../../services/employee/employee.service';
+import { BranchDetailService } from '../../../services/branch/branch-detail.service'
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -8,21 +9,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private __branchService:BranchDetailService,
+    private __employeeService:EmployeeService
+  ) {
    }
+
+
   ngOnInit(): void {
+    this.getEmployees();
+    this.getData(localStorage.getItem("Auth_id"));
   }
+
+  
+  getEmployees(){
+    this.__employeeService.getEmployees().subscribe((result) =>{
+      this.employeeId = [];
+      this.employeeList  = result.map(e =>{
+        this.employeeId.push(e.payload.doc.id);
+        return e.payload.doc.data();
+      });  
+      this.sortData(this.employeeList, this.employeeId);
+    }) 
+}
+sortData(data:any, id:any){
+    this.duePaymentEmpId  = [];
+    this.duePaymentEmployeeList = [];
+    for(var i=0; i<data.length; i++){
+      if(data[i].attendance_detail.length > 0){
+          this.duePaymentEmployeeList.push(data[i]);
+          this.duePaymentEmpId.push(id[i]);
+      }
+    }  
+}
+employeePayment(){
+      this.branchData.worth.employee_expence+= this.totalAmount;
+      this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchData);
+      this.duePaymentEmployeeList[this.index].attendance_detail = [];
+      this.__employeeService.updateEmployee(this.duePaymentEmpId[this.index],this.duePaymentEmployeeList[this.index]);
+      this.backToEmployeePayment();
+
+}
+
+getData(id : any){
+  this.__branchService.getBranchDetail(id).subscribe((res)=>{
+   //this.branchData = res[0].payload.doc.data();
+     this.branchData = res;
+  })
+}
+otherPayment(){
+  this.branchData.payment_others.push(this.paymentOthers)
+  this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchData)
+  this.backToEmployeePayment();
+}
+  branchData:any = []
+  employeeId :any = [];
+  employeeList:any = [];
+  duePaymentEmployeeList:any = [];
+  duePaymentEmpId :any = [];
   employeePaymentDetail=false;
   formIf=true;
   sallaryCalculation=true;
-  dailyWage=500;
+  dailyWage=0;
   totalAmount = 0;
-  paidleave= this.dailyWage;
   unpaidleave=0;
-  fullday= this.dailyWage;
-  halfday=  this.dailyWage/2;
+  index =0;
   currentDate = new Date();
- 
+  paymentOthers :any = {
+    payment_type : null,
+    paid_to: null,
+    invoice_date: null,
+    due_date: null,
+    amount:0
+  };
   
   paymentForm(){
     this.employeePaymentDetail=true;
@@ -33,78 +92,34 @@ export class PaymentComponent implements OnInit {
     this.formIf = true;
     this.sallaryCalculation = true;
   }
-  sallaryCountObj={
-    employeeid: '',
-    name: '',
-    email: '',
-    number: '',
-    attendance: [],
-    bankname: '',
-    accountno: '',
-    ifgcno: '',
-    
-  }
+  
 
-  sallaryCount(data:any)
+  sallaryCount( index:any)
   {
     this.totalAmount = 0;
     this.employeePaymentDetail = true;
     this.formIf = true;
     this.sallaryCalculation = false;
-    this.sallaryCountObj=data;
-    for(var i=0; i<data.attendance.length;i++){
-      switch(data.attendance[i]){
-        case 'FF':
-                   this.totalAmount+=this.fullday;
+    this.index = index;
+    this.dailyWage = parseInt(this.duePaymentEmployeeList[index].wage);
+
+    for(var i=0; i<this.duePaymentEmployeeList[index].attendance_detail.length;i++){
+      switch(this.duePaymentEmployeeList[index].attendance_detail[i].attendance_status){
+        case 'fd':
+                   this.totalAmount+=this.dailyWage;
                    break;
-        case 'HF':
-          this.totalAmount+=this.halfday;
+        case 'hd':
+          this.totalAmount+=this.dailyWage/2;
           break;
-        case 'UPL':
+        case 'unl':
               this.totalAmount+=this.unpaidleave;
               break;
-        case 'PL':
-          this.totalAmount+=this.paidleave;
+        case 'pl':
+          this.totalAmount+=this.dailyWage;
       }
     }
-    console.log(this.totalAmount);
+   
 
   }
 
-  allEmployeesDetail: any = [
-    {
-      employeeid: 'ahoah', 
-      name: 'rana ranjeet singh rajawat', 
-      email: 'ranjeetsingh1978@gmail.com',
-      number: '+911234567890', 
-      attendance: ['HF','HF','HF','HF','HF','HF', 'HF', 'FF','PL', 'UPL', 'HF', 'FF','PL', 'UPL', 'HF', 'FF','PL', 'UPL', 'HF', 'FF','PL', 'UPL', 'HF', 'FF','PL', 'UPL', 'HF', 'FF','PL','UPL','HF','FF','FF','HF'],
-      bankname : 'SBI',
-      accountno :'235689124578',
-      ifgcno :'SBIN0001666',
-      date:''
-    },
-    {
-      employeeid: 'YOLO',
-      name: 'rana ranjeet singh rajawat',
-      email: 'ranjeetsingh1978@gmail.com',
-      number: '+911234567890',
-      attendance: ['PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'FF', 'HF'],
-      bankname: 'SBI',
-      accountno: '235689124578',
-      ifgcno: 'SBIN0001666',
-      date: ''
-    },
-    {
-      employeeid: 'XoXo',
-      name: 'rana ranjeet singh rajawat',
-      email: 'ranjeetsingh1978@gmail.com',
-      number: '+911234567890',
-      attendance: ['PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'PL', 'UPL', 'HF', 'FF', 'FF', 'HF'],
-      bankname: 'SBI',
-      accountno: '235689124578',
-      ifgcno: 'SBIN0001666',
-      date: ''
-    },
-    
-  ]
 }

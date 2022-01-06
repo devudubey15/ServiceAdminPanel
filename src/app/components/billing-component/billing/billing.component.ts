@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ɵangular_packages_platform_browser_dynamic_testing_testing_a } from '@angular/platform-browser-dynamic/testing';
-// import jsPDF from 'jspdf';
-// import html2canvas from 'html2canvas';
-// import pdfFonts from 'pdfmake/build/vfs_fonts';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// import htmlToPdfmake from 'html-to-pdfmake';
+import { Component, OnInit , ElementRef, ViewChild} from '@angular/core';
+import {MembershipService} from '../../../services/membership_service/membership.service';
+import {BranchDetailService} from '../../../services/branch/branch-detail.service';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import htmlToPdfmake from 'html-to-pdfmake';
 
 @Component({
   selector: 'app-billing',
@@ -13,7 +14,11 @@ import { ɵangular_packages_platform_browser_dynamic_testing_testing_a } from '@
 })
 export class BillingComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('pdfTable') pdfTable: ElementRef;
+  constructor(
+    private __membershipService: MembershipService,
+    private __branchService:BranchDetailService
+  ) { }
 
   billgenerate = false;
   partName = null;
@@ -24,31 +29,35 @@ export class BillingComponent implements OnInit {
   date = null;
   total =0;
   tax=0;
-
-  companyData = {
-    name: 'Csr Service center',
-    email: 'csr@gamil.com',
-    address: 'ghanta ghar',
-    phone: '123-46-789-01',
-    businessNumber: '12345-7895'
-  }
-  customerData = {
-    name: 'Mr. Singh',
-    email: 'singh@gamil.com',
-    address: 'kidvai nagar',
-    phone: '123-46-789-01'
-
-  }
-  vehicleData = {
-    vehicle_number: 'UP 78 D 0343',
-    chechis_number: 'XR10234STY324POI6',
-    vehicle_model: 'Royal enfield Classic 350'
-  }
+  branchDetail:any = {};
+  membesrShipDetail :any = {};
+  memberShip = false;
+  
   partData: any = [
 
   ]
   
+  membershipId(event:any){
+    
+    this.__membershipService.getMember(event.value).subscribe((result) =>{
+      if(result.length <=0){
+        alert("Result not Found");
+      }else{
+        this.membesrShipDetail= result[0];
+        this.memberShip = true;
+      }
+     //  console.log(this.membershipData)
+   })
+  }
+  getBranchDetail(id:any){
 
+    this.__branchService.getBranchDetail(id).subscribe((res)=>{
+     
+       this.branchDetail = res;
+      
+    })
+  
+}
 
   addDetails() {
     if (this.partName == null || this.price == null || this.quantity == null) {
@@ -64,6 +73,7 @@ export class BillingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getBranchDetail(localStorage.getItem("Auth_id"))
   }
   deletedetails(index: any) {
     this.partData.splice(this.index, 1);
@@ -81,24 +91,23 @@ export class BillingComponent implements OnInit {
 
 
     this.tax = (this.total*18)/100;
-
+    this.branchDetail.worth.billing += (this.tax+this.total);
+    this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchDetail);
+   
   }
   
-  // title = 'htmltopdf';
-
-  // @ViewChild('pdfTable') pdfTable: ElementRef;
-
-  // public downloadAsPDF() {
-  //   const doc = new jsPDF();
-
-  //   const pdfTable = this.pdfTable.nativeElement;
-
-  //   var html = htmlToPdfmake(pdfTable.innerHTML);
-
-  //   const documentDefinition = { content: html };
-  //   pdfMake.createPdf(documentDefinition).open();
-
-  // }
+  
+  public downloadAsPDF(event:any) {
+    const doc = new jsPDF();
+    //  console.log(event.innerHTML);
+    //const pdfTable = this.pdfTable.nativeElement;
+    
+    var html = htmlToPdfmake(event.innerHTML);
+     
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).open(); 
+     
+  }
 
 
 
