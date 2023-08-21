@@ -23,7 +23,7 @@ export class BranchDetailsComponent implements OnInit {
      this.branchService.getBranchDetail(id).subscribe((res)=>{
       //this.branchData = res[0].payload.doc.data();
         this.branchData = res;
-        if( this.branchData.payment_others.length <1){
+        if( this.branchData?.payment_others?.length <1){
           this.flag = true;
         }
      })
