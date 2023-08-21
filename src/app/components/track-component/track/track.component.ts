@@ -59,9 +59,11 @@ export class TrackComponent implements OnInit {
      this.__branchService.getBranchDetail(id).subscribe((res)=>{
       //this.branchData = res[0].payload.doc.data();
         this.branchData = res;
-        this.visitsOverviewChart(this.branchData.financial);
+        console.log(res);
+        this.visitsOverviewChart(this.branchData.finantial);
      })
    }
+
    updateData( financial){
      var monthNumber = financial.length;
      var profit =  this.branchData.worth.billing -( this.branchData.worth.employee_expence +  this.branchData.worth.goods_other_expence);
@@ -75,6 +77,7 @@ export class TrackComponent implements OnInit {
        }
       this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchData);
    }
+
   visitsOverviewChart( financial :any){
     this.data = [];
     this.categories = [];

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
+  firebaseConfigOld : {
     apiKey: "AIzaSyBpPAEwKXdvPbGxjrV44WJQmiSrqU_FK7A",
     authDomain: "serviceapplication-e09ce.firebaseapp.com",
     projectId: "serviceapplication-e09ce",
@@ -12,8 +12,19 @@ export const environment = {
     messagingSenderId: "958363066262",
     appId: "1:958363066262:web:c62756e618e0c0feeec7b7",
     measurementId: "G-SZJH9DXL6N"
+  },
+  firebaseConfig : {
+    apiKey: "AIzaSyDoI6ic4Anm5K0-6H_aaWJLbbq__RyW5f0",
+    authDomain: "service-admin-panel.firebaseapp.com",
+    projectId: "service-admin-panel",
+    storageBucket: "service-admin-panel.appspot.com",
+    messagingSenderId: "287470871299",
+    appId: "1:287470871299:web:0d36b6d52455c88efbbf36",
+    measurementId: "G-2TZ4VJ04SV"
   }
+  
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

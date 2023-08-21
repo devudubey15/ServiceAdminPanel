@@ -24,6 +24,7 @@ export class MemberComponent implements OnInit {
        if(result.length <=0){
          alert("Result not Found");
        }else{
+        console.log(result)
          this.membershipData  = result[0];
          this.searchBar = false;
        }

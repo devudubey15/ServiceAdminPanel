@@ -57,8 +57,9 @@ getData(id : any){
      this.branchData = res;
   })
 }
+
 otherPayment(){
-  this.branchData.payment_others.push(this.paymentOthers)
+  this.branchData?.payment_others?.push(this.paymentOthers)
   this.__branchService.updateBranchDetail(localStorage.getItem("Auth_id"), this.branchData)
   this.backToEmployeePayment();
 }

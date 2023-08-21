@@ -75,11 +75,14 @@ export class BillingComponent implements OnInit {
   ngOnInit(): void {
     this.getBranchDetail(localStorage.getItem("Auth_id"))
   }
+
   deletedetails(index: any) {
     this.partData.splice(this.index, 1);
 
   }
+
   generateBill() {
+    console.log(this.partData, this.invoice_number, this.date)
     if (this.partData.length == 0 || this.invoice_number == null || this.date == null) {
       alert(" PLEASE ENTER THE CORRECT VALUES ");
       return
