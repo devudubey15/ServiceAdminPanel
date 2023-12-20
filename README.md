@@ -20,7 +20,6 @@ The Service Admin Panel allows administrators to:
 - [Environment Configuration](#environment-configuration)
 - [Styling](#styling)
 - [Significance](#significance)
-- [Screenshots](#screenshots)
 
 ## Project Structure
 
@@ -71,12 +70,7 @@ Global styles are defined in the `styles.css` file, including a custom style for
 
 Service Admin Panel serves as a comprehensive solution for businesses to streamline administrative tasks, enhance member management, and ensure efficient billing and payment processes. Its modular structure allows for easy expansion and customization based on specific business needs.
 
-## Screenshots
 
-Include screenshots or diagrams here to visually represent the application's UI or workflow.
-
-![Authentication](/path/to/authentication-screenshot.png)
-![Billing](/path/to/billing-screenshot.png)
 ...
 
 
